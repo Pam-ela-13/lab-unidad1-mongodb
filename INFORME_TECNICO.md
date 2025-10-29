@@ -44,8 +44,56 @@ FORMATO DE ESTRUCTURA JSON
 ************************************************
 
 RESULTADOS DE LA EJECUCIÓN
+
+Limpieza inicial
+
 ![Limpieza inicial](Imagenes/Ejecucución_drop.png)
+
+Inserción de datos
+
 ![Inserción de datos](Imagenes/Inserción_datos.png)
+
+Consulta 1
+
 ![Consulta 1](Imagenes/Consulta1.png)
-![Consulta2](Imagenes/Entidad-Relación_diagrama.png)
-![Diagrama Entidad-Relación](Imagenes/Entidad-Relación_diagrama.png)
+
+Consulta 2
+
+![Consulta2](Imagenes/Consulta2.png)
+
+Consulta 3
+
+![Consulta3](Imagenes/Consulta3.png)
+
+Consulta 4
+![Consulta4](Imagenes/Consulta4.png)
+
+Actualización de Datos (Update)
+
+Operación 1
+
+![Operación1](Imagenes/Actualización_operacion1.png)
+
+Operación 2
+
+![Operación2](Imagenes/Operacion2.png)
+
+
+Análisis Reflexivo
+
+Pregunta 1: ¿Cuál fue la ventaja más significativa de usar un modelo de documento (MongoDB) para el caso "TechStore" en comparación con el modelo relacional que diseñó? 
+
+Respuesta: La ventaja más significativa que se puede destacar es la flexibilidad del esquema, mongodb permite almacenar divversos productos con distintas caracteristicas o atributos en un solo documento,  evitando múltiples tablas y JOINs, lo que simplifica el diseño y mejora el rendimiento en consultas.
+ 
+
+pregunta 2: ¿Cómo facilita el anidamiento de documentos (el campo especificaciones) la gestión de datos heterogéneos (diferentes atributos por producto)? 
+
+Respuesta: El anidamiento permite incluir todas las especificaciones dentro del mismo documento, sin crear tablas adicionales. Esto hace que cada producto sea autosuficiente y reduce la complejidad de consultas, ya que toda la información se obtiene en una sola lectura.
+
+Pregunta 3: ¿Qué problemas potenciales podría enfrentar esta base de datos a futuro si no se controla la flexibilidad del esquema (es decir, si se permite insertar cualquier dato)? 
+
+Respuesta:Podría haber inconsistencias en los datos, atributos irrelevantes o duplicados, y dificultad para validar reglas de negocio. Esto afectaría la integridad y complicaría el análisis, además de generar problemas de rendimiento.
+
+Pregunta 4: ¿Qué paso técnico recomendaría a continuación para "profesionalizar" esta base de datos? (Piense en rendimiento e integridad de datos que no cubrimos en este laboratorio).
+
+Respuesta: Implementar un JSON Schema para validar documentos, crear índices en campos clave (como sku y tipo_producto) y aplicar políticas de control de datos para garantizar consistencia y optimizar consultas.
