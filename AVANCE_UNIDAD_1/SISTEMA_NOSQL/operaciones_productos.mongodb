@@ -1,0 +1,80 @@
+use("TechStore");
+
+db.createCollection("productos");
+
+// Inserción de datos
+db.productos.insertMany([
+  {
+    sku: "PRD001",
+    nombre: "Laptop Lenovo IdeaPad 5",
+    precio_unitario: 850.00,
+    stock: 15,
+    especificaciones: {
+      procesador: "Intel Core i5",
+      memoria_ram: "8GB",
+      almacenamiento: "512GB SSD",
+      sistema_operativo: "Windows 11"
+    }
+  },
+  {
+    sku: "PRD002",
+    nombre: "Smartphone Samsung Galaxy A55",
+    precio_unitario: 420.00,
+    stock: 40,
+    especificaciones: {
+      pantalla: "6.6 pulgadas AMOLED",
+      camara: "64MP",
+      bateria: "5000mAh",
+      sistema_operativo: "Android 14"
+    }
+  },
+  {
+    sku: "PRD003",
+    nombre: "Monitor LG UltraWide 29''",
+    precio_unitario: 290.00,
+    stock: 25,
+    especificaciones: {
+      resolucion: "2560x1080",
+      tipo_pantalla: "IPS",
+      frecuencia: "75Hz",
+      conexion: ["HDMI", "DisplayPort"]
+    }
+  }
+]);
+
+//Consultas básicas
+// Mostrar todos los productos
+db.productos.find().pretty();
+
+// Buscar productos con stock menor a 20 unidades
+db.productos.find({ stock: { $lt: 20 } });
+
+// Buscar producto por SKU
+db.productos.findOne({ sku: "PRD001" });
+
+//Actualización de datos
+// Actualizar el precio de un producto
+db.productos.updateOne(
+  { sku: "PRD002" },
+  { $set: { precio_unitario: 450.00 } }
+);
+
+// Aumentar el stock en 5 unidades del monitor
+db.productos.updateOne(
+  { sku: "PRD003" },
+  { $inc: { stock: 5 } }
+);
+
+//Eliminación de productos descontinuados
+db.productos.deleteOne({ sku: "PRD001" });
+
+//Creación de índice único para evitar SKU duplicados
+db.productos.createIndex({ sku: 1 }, { unique: true });
+
+//Verificación final
+// Contar cuántos productos hay
+db.productos.countDocuments();
+
+// Ver todos los índices
+db.productos.getIndexes();
+
